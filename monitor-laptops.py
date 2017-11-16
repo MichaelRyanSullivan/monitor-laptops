@@ -11,7 +11,7 @@ url = 'http://oskicat.berkeley.edu/search~S1?/.b21338181/.b21338181/1,1,1,B/hold
 def main():
     while True:
         resp = requests.get(url)
-        soup = BeautifulSoup(resp.txt, "html.parser")
+        soup = BeautifulSoup(resp.text, "html.parser")
         if (checkTwoWeek(soup)):
             msg = 'Subject: LAPTOP AVAILABLE!!!'
             fromaddr = 'sullivanm20@berkeley.edu'
@@ -43,7 +43,7 @@ def checkTwoWeek(soup):
         if len(tag1.contents) == 12:
             availability = tag1.contents[5].contents[1]
             laptop_type = tag1.contents[9].contents[1]
-            if (laptop_type.matches(laptop_type)) & availability_re.matches(availability):
+            if (laptop_type_re.match(laptop_type.string)) != None & availability_re.match(availability.string)!= None:
                 return True
     return False
         # for tag2 in td:
@@ -55,5 +55,4 @@ def checkTwoWeek(soup):
         #         pass
 
 
-if __name__ == '__main__':
-    sys.exit(main)
+main()
