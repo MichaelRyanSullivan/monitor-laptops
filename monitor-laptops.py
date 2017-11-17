@@ -43,7 +43,9 @@ def checkTwoWeek(soup):
         if len(tag1.contents) == 12:
             availability = tag1.contents[5].contents[1]
             laptop_type = tag1.contents[9].contents[1]
-            if (laptop_type_re.match(laptop_type.string)) != None & availability_re.match(availability.string)!= None:
+            if (laptop_type_re.match(laptop_type.string) is not None):
+                    print(availability.string)
+            if (laptop_type_re.match(laptop_type.string) is not None) & (availability_re.match(availability.string)is not None):
                 return True
     return False
         # for tag2 in td:
