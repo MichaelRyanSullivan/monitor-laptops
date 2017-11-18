@@ -14,18 +14,18 @@ def main():
         soup = BeautifulSoup(resp.text, "html.parser")
         if (checkTwoWeek(soup)):
             msg = 'Subject: LAPTOP AVAILABLE!!!'
-            fromaddr = 'sullivanm20@berkeley.edu'
+            fromaddr = 'msully98@gmail.com'
             server = smtplib.SMTP('smtp.gmail.com', 587)
             server.starttls()
             # add my account login name and password,
-            server.login("sullivanm20@berkeley.edu", "Iam4IRISH11")
+            server.login("msully98@gmail.com", "Iam4IRISH11")
 
             # Print the email's contents
             print('From: ' + fromaddr)
-            print('To: ' + str(toaddrs))
+            print('To: ' + 'mikemike')
             print('Message: ' + msg)
             # send the email
-            server.sendmail(fromaddr, toaddrs, msg)
+            server.sendmail(fromaddr, 'sullivanm20@berkeley.edu', msg)
             # disconnect from the server
             server.quit()
             break
@@ -43,9 +43,9 @@ def checkTwoWeek(soup):
         if len(tag1.contents) == 12:
             availability = tag1.contents[5].contents[1]
             laptop_type = tag1.contents[9].contents[1]
-            if (laptop_type_re.match(laptop_type.string) is not None):
+            if (laptop_type_re.match(str(laptop_type.encode('utf-8'))) is not None):
                     print(availability.string)
-            if (laptop_type_re.match(laptop_type.string) is not None) & (availability_re.match(availability.string)is not None):
+            if (laptop_type_re.match(str(laptop_type.encode('utf-8'))) is not None) & (availability_re.match(str(availability.encode('utf-8')))is not None):
                 return True
     return False
         # for tag2 in td:
