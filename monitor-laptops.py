@@ -22,10 +22,11 @@ def main():
 
             # Print the email's contents
             print('From: ' + fromaddr)
-            print('To: ' + 'mikemike')
+            print('To: ' + 'mike')
             print('Message: ' + msg)
             # send the email
             server.sendmail(fromaddr, 'sullivanm20@berkeley.edu', msg)
+            server.sendmail(fromaddr, 'wangr20@berkeley.edu', msg)
             # disconnect from the server
             server.quit()
             break
